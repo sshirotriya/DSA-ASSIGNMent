@@ -1,0 +1,126 @@
+#1. Print the Elements of a Linked List
+
+void printLinkedList(SinglyLinkedListNode* head) {
+    struct SinglyLinkedListNode *ptr;
+    ptr=head;
+    while(ptr!=NULL){
+        cout<<ptr->data<<endl;
+        ptr=ptr->next;
+        
+    }
+
+
+}
+
+
+
+#2. Insert a Node at the Tail of a Linked List
+
+SinglyLinkedListNode* insertNodeAtTail(SinglyLinkedListNode* head, int data) {
+    struct SinglyLinkedListNode *ptr;
+    struct SinglyLinkedListNode *temp;
+    
+    temp=(struct SinglyLinkedListNode*) malloc(sizeof(struct SinglyLinkedListNode));
+    
+    temp->data= data;
+    temp->next= NULL;
+    if(head==NULL){
+        return temp;
+        
+        
+    }
+    ptr=head;
+    while(ptr->next!=NULL){
+        ptr=ptr->next;
+    }
+    ptr->next=temp;
+    
+    return head;
+    
+}
+
+
+#3. Inserting a node at the head
+
+SinglyLinkedListNode* insertNodeAtHead(SinglyLinkedListNode* head, int data) {
+    SinglyLinkedListNode  *temp;
+    temp=(struct SinglyLinkedListNode*)malloc(sizeof(struct SinglyLinkedListNode));
+    temp->data=data;
+    temp->next = head;
+    return temp;
+    
+    
+    
+
+
+}
+
+#4. Insert a node at a specific position in a linked list
+
+SinglyLinkedListNode* insertNodeAtPosition(SinglyLinkedListNode* head, int data, int position) {
+     struct SinglyLinkedListNode *ptr,*temp;
+    temp=(struct SinglyLinkedListNode*) malloc(sizeof(struct SinglyLinkedListNode));
+    temp->data= data;
+    temp->next= NULL;
+    ptr=head;
+    while(position !=1){
+        ptr=ptr->next;
+        position--;
+    }
+    temp->next=ptr->next;
+    ptr->next=temp; 
+    return head;
+    
+    
+    
+    
+    
+
+}
+
+
+#5. DELETING A NODE
+SinglyLinkedListNode* deleteNode(SinglyLinkedListNode* head, int position) {
+    SinglyLinkedListNode *ptr =head, *ptr2=head;
+    
+    if (position==0) {
+        
+        free(head);
+        head=ptr->next;
+    }
+    else{
+        while(position!=0){
+            ptr2=ptr;
+            ptr=ptr->next;
+            position--;
+        }
+   
+        ptr2->next=ptr->next;
+        free(ptr);
+        ptr=NULL;
+    }
+    return (head);
+    
+    
+    
+    
+
+}
+
+#6. CYCLE DETECTION
+
+bool has_cycle(SinglyLinkedListNode* head) {
+    SinglyLinkedListNode *temp1=head,*temp2=head;
+    if(head==NULL) return false;
+    while(temp2!=NULL && temp2->next !=NULL){
+        temp1=temp1->next;
+        temp2=temp2->next->next;
+        
+        if(temp1==temp2){
+            return true;
+        }
+        
+    }
+    return false;
+    
+}
